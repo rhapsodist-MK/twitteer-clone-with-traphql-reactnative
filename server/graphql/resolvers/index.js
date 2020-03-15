@@ -1,7 +1,9 @@
+const graphqlDate = require('graphql-date')
 const TweetResolvers = require('./tweetResolvers')
 
 const rootResolver = {
-  ...TweetResolvers
+  Date: graphqlDate,
+  ...TweetResolvers,
 }
 
 module.exports = rootResolver

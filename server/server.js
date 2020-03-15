@@ -17,8 +17,8 @@ const port = process.env.PORT || 3000
 connectDb().then(async () => {
   app.use(bodyParser.json())
   
-  mocks()
-  .then(() => {
+  // mocks()
+  // .then(() => {
     app.use('/graphql', graphqlHttp({
       schema: graphQlSchema,
       rootValue: graphQlResolvers,
@@ -26,7 +26,7 @@ connectDb().then(async () => {
     }))
   
     app.listen(port, err => console.log(`server is up in prot ${port}`))
-  })
+  // })
 })
 .catch((ex) => {
   console.err(ex.stack)
