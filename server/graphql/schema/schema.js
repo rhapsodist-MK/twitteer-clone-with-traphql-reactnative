@@ -25,17 +25,33 @@ module.exports = buildSchema(`
     updatedAt: Date!
   }
 
+  type Auth {
+    token: String!
+  }
+
+  type Me {
+    _id: ID!
+    username: String,
+    email: String!,
+    firstName: String
+    lastName: String
+    avatar: String
+    createdAt: Date!
+    updatedAt: Date!
+  }
+
   type RootQuery {
     getTweet(_id: ID!): Tweet
     getTweets: [Tweet]
-    login(email: String!, password: String!): User
+    login(email: String!, password: String!): Auth
+    me: Me
   }
 
   type RootMutation {
     createTweet(text: String!): Tweet
     updateTweet(_id: ID!, text: String): Tweet
     deleteTweet(_id: ID!): States
-    signup(email: String!, fullName: String!, password: String!, avatar: String, username: String): User
+    signup(email: String!, fullName: String!, password: String!, avatar: String, username: String): Auth
   }
 
   schema {

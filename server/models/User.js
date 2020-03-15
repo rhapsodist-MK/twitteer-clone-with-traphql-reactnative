@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const { hashSync, compareSync } = require('bcrypt-nodejs')
+const jwt = require('jsonwebtoken')
 
 const UserSchema = new Schema({
   username: {
@@ -32,6 +33,11 @@ UserSchema.methods = {
   },
   authenticateUser(password) {
     return compareSync(password, this.password)
+  },
+  createToken() {
+    return jwt.sign({
+      _id: this._id
+    }, process.env.JWT_SECRET)
   }
 }
 
