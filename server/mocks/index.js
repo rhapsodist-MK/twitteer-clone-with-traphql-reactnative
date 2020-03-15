@@ -1,6 +1,7 @@
 const faker = require('faker') // 가짜 데이터 만들기
 
 const Tweet = require('../models/Tweet')
+const User = require('../models/User')
 
 const TWEET_TOTAL = 10
 
