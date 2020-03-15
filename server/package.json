@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev nodemon -w server.js server.js"
+  }
+}
