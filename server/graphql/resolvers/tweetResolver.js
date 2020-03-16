@@ -3,7 +3,7 @@ const Tweet = require('../../models/Tweet')
 const {requireAuth} = require('../../services/auth')
 
 module.exports = {
-  getTweet: async ({_id}, { user }) => {
+  getTweet: async (_, {_id}, { user }) => { // 3번째 인자는 context
     try {
       await requireAuth(user)
       return await Tweet.findById(_id)
@@ -11,7 +11,7 @@ module.exports = {
       throw err
     }
   },
-  getTweets: async (args, { user }) => {
+  getTweets: async (_, args, { user }) => {
     try {
       await requireAuth(user)
       return await Tweet.find({}).sort({createdAt: -1})
@@ -19,15 +19,15 @@ module.exports = {
       throw err
     }
   },
-  createTweet: async (args, { user }) => {
+  createTweet: async (_, args, { user }) => {
     try {
       await requireAuth(user)
-      return await Tweet.create(args)
+      return await Tweet.create({...args, user: user._id})
     } catch (err) {
       throw err
     }
   },
-  updateTweet: async ({_id, ...rest}, { user }) => {
+  updateTweet: async (_, {_id, ...rest}, { user }) => {
     try {
       await requireAuth(user)
       return await Tweet.findByIdAndUpdate(_id, rest, { new: true }) // rest는 _id를 제외한 나머지 모두
@@ -36,7 +36,7 @@ module.exports = {
       throw err
     }
   },
-  deleteTweet: async ({_id}, req) => {
+  deleteTweet: async (_, {_id}, req) => {
     try {
       await requireAuth(user)
       await Tweet.findByIdAndRemove(_id)

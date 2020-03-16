@@ -10,9 +10,9 @@ const port = process.env.PORT || 3000
 
 connectDb().then(async () => {
   middlewares(app)
+
   app.listen(port, err => console.log(`server is up in prot ${port}`))
 })
 .catch((ex) => {
-  console.err(ex.stack)
   process.exit(1)
 })

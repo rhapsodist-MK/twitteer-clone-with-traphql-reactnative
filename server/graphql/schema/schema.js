@@ -1,6 +1,4 @@
-const { buildSchema } = require('graphql')
-
-module.exports = buildSchema(`
+module.exports = `
   scalar Date
 
   type States {
@@ -10,6 +8,8 @@ module.exports = buildSchema(`
   type Tweet {
     _id: ID!
     text: String!
+    user: User!
+    favoriteCount: Int!
     createdAt: Date!
     updatedAt: Date!
   }
@@ -40,14 +40,14 @@ module.exports = buildSchema(`
     updatedAt: Date!
   }
 
-  type RootQuery {
+  type Query {
     getTweet(_id: ID!): Tweet
     getTweets: [Tweet]
     login(email: String!, password: String!): Auth
     me: Me
   }
 
-  type RootMutation {
+  type Mutation {
     createTweet(text: String!): Tweet
     updateTweet(_id: ID!, text: String): Tweet
     deleteTweet(_id: ID!): States
@@ -55,9 +55,8 @@ module.exports = buildSchema(`
   }
 
   schema {
-    query: RootQuery
-    mutation: RootMutation
+    query: Query
+    mutation: Mutation
   }
-`)
-
+`
 // scalar Date : Date를 처리해줌 (yarn add graphql-date 필요)

@@ -10,7 +10,7 @@ module.exports = async () => {
     await Tweet.remove()
     
     await Array.from({length: TWEET_TOTAL}).forEach(async () => {
-      await Tweet.create({ text: faker.lorem.paragraphs(1) })
+      await Tweet.create({ text: faker.lorem.sentence() })
     })
   } catch (err) {
     throw err

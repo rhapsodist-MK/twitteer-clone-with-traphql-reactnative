@@ -1,10 +1,10 @@
 const bodyParser = require('body-parser')
-const graphqlHttp = require('express-graphql')
+const { ApolloServer } = require('apollo-server-express')
 
-const graphQlSchema = require('../graphql/schema/schema')
-const graphQlResolvers = require('../graphql/resolvers/index')
+const typeDefs = require('../graphql/schema/schema')
+const resolvers = require('../graphql/resolvers/index')
 
-const mocks = require('../mocks/index')
+// const mocks = require('../mocks/index')
 
 const { decodeToken } = require('../services/auth')
 
@@ -23,16 +23,25 @@ const auth = async (req, res, next) => {
   }
 }
 
-module.exports = (app) => {
+module.exports = async (app) => {
   app.use(bodyParser.json())
   app.use(auth)
-  
+
+  const schema = new ApolloServer({
+    typeDefs, resolvers,
+    context: ({req}) => {
+      return {user: req.user}
+    },
+    playground: {
+      endpoint: '/graphql',
+      setting: {
+        'editor.theme': 'light'
+      }
+    }
+  })
+
+  schema.applyMiddleware({app})
   // mocks()
   // .then(() => {
-  app.use('/graphql', graphqlHttp({
-    schema: graphQlSchema,
-    rootValue: graphQlResolvers,
-    graphiql: (process.env.GRAPHIQL == 'true')
-  }))
   // })
 }
