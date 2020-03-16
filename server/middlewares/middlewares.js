@@ -4,7 +4,7 @@ const { ApolloServer } = require('apollo-server-express')
 const typeDefs = require('../graphql/schema/schema')
 const resolvers = require('../graphql/resolvers/index')
 
-const mocks = require('../mocks/index')
+// const mocks = require('../mocks/index')
 
 const { decodeToken } = require('../services/auth')
 

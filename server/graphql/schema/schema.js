@@ -43,6 +43,7 @@ module.exports = `
   type Query {
     getTweet(_id: ID!): Tweet
     getTweets: [Tweet]
+    getUserTweets: [Tweet]
     login(email: String!, password: String!): Auth
     me: Me
   }

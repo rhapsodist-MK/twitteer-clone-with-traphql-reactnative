@@ -1,6 +1,6 @@
 const graphqlDate = require('graphql-date')
 
-const { getTweet, getTweets, createTweet, updateTweet, deleteTweet} = require('./tweetResolver')
+const { getTweet, getTweets, createTweet, updateTweet, deleteTweet, getUserTweets } = require('./tweetResolver')
 const { signup, login, me } = require('./userResolver')
 
 const User = require('../../models/User')
@@ -11,7 +11,7 @@ module.exports = {
     user: ({user}) => User.findById(user)
   },
   Query: {
-    getTweet, getTweets, me, login
+    getTweet, getTweets, getUserTweets, me, login
   },
   Mutation: {
     createTweet, updateTweet, deleteTweet, signup
