@@ -4,7 +4,7 @@
   "main": "server.js",
   "license": "MIT",
   "dependencies": {
-    "apollo-server-express": "^2.11.0",
+    "apollo-server-express": "^2.14.2",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
