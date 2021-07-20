@@ -15,7 +15,7 @@
     "apollo-link-http": "^1.5.16",
     "react": "16.9.0",
     "react-apollo": "^1.4.8",
-    "react-native": "0.61.5",
+    "react-native": "0.62.3",
     "react-navigation": "^4.3.1",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
